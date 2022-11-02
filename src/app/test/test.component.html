@@ -1,0 +1,86 @@
+<p>Test works! Hello {{name}}</p> <!--interpolation -->
+<input [id] = "myId" type="text" value="GG"> <!--(property bind) id takes value from class variable 'myId'-->
+<p [ngClass]="successClass">I Am Here !!!</p> <!-- class binding-->
+
+<p [style.color]="hasError ? 'red' : 'blue'">Style Binding Check</p>
+<p [ngStyle]="styleObj">Style Test</p>
+<button (click)="onClick()">Greet</button> <!--event binding-->
+{{greeting}}
+
+<p (mousemove)="count = count + 1">Mouse over me!</p> {{count}}
+<br><br>
+
+<input #myInput type="text">                         <!-- using reference variable -->
+<button (click)="logMsg(myInput.value)">Log</button> <!-- take html input to class -->
+<br><br>
+
+<input [(ngModel)]="name" type="text"> {{name}} <!-- two way bind (input to class to template)-->
+
+<!--_______________________________________________________________________________________________-->
+
+<!-- NGIF DIRECTIVE (if-else)-->
+
+<p *ngIf="true">Checking directive ngIf</p> <!-- conditional rendering of html element -->
+<p *ngIf="con; else elseCode">Checking ngIf (the if part)</p>
+<ng-template #elseCode>
+    <p>Testing if (else part)</p>
+</ng-template>
+
+<div *ngIf="con; then ifBlock; else elseBlock"></div>
+<ng-template #ifBlock>
+    <p>If condition is true (running from ifBlock)</p>
+</ng-template>
+<ng-template #elseBlock>
+    <p>If condition is false (running from elseBlock)</p>
+</ng-template>
+
+<!--___________________________________________________________________________________________________-->
+
+<!-- NGSWITCH DIRECTIVE (switch) -->
+
+<div [ngSwitch]="color">
+    <p *ngSwitchCase="'red'">Color is red</p>
+    <p *ngSwitchCase="'blue'">Color is blue</p>
+    <p *ngSwitchCase="'green'">Color is green</p>
+    <p *ngSwitchDefault>Color not defined</p>
+</div>
+
+<!-- _________________________________________________________________________________________________ -->
+
+<!-- NGFOR DIRECTIVE (for) -->
+
+<div *ngFor="let f of fruits; index as i">
+    <!-- first as f/ last as l/ odd as o/ even as e -->
+    {{i+1}} {{f}}
+</div>
+<br><br>
+
+<!-- ___________________________________________________________________________________________________ -->
+
+<!-- PIPES (transform data before displaying to view (changes only to view actual data not affected)) -->
+<!-- STRINGS -->
+
+<h6>{{name}}</h6>
+<h6>{{name | lowercase}}</h6>
+<h6>{{name | uppercase}}</h6>
+<h6>{{message| titlecase}}</h6>
+<h6>{{name | slice:3:5}}</h6> <!--index 3 to (5-1) slicing-->
+<!-- <h6>{{groupOfItems | json}}</h6>   ->  diplays objects as json  -->
+
+<!-- NUMBERS -->
+
+<h6>{{6.887534 | number:'1.2-3'}}</h6> <!-- 1= no.of integers, 2=min no of decimals, 3=max no of decimals -->
+<h6>{{6.887534 | number: '3.1-5'}}</h6>
+<h6>{{0.77 | percent}}</h6>
+<h6>{{7.08 | currency}}</h6>
+<h6>{{39 | currency: 'INR'}}</h6>
+
+<!-- DATES -->
+
+<h6>{{date}}</h6>
+<h6>{{date | date:'short'}}</h6>
+<h6>{{date | date:'shortDate'}}</h6>
+<h6>{{date | date:'shortTime'}}</h6>
+<h6>{{date | date:'medium'}}</h6>
+
+<!-- ___________________________________________________________________________________________ -->
